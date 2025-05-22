@@ -86,7 +86,7 @@ I’m starting with a mobile-first layout, so I’m using Flexbox to stack every
 .banner { background: lightgreen; }
 .footer { background: orange; }
 ```
--Then I give each section a different color so I can see which is which during development.
+- Then I give each section a different color so I can see which is which during development.
 
 - I made `.main` taller so it stands out — my thought is was made to represent more content.
 
@@ -281,7 +281,7 @@ If you don’t use grid-area or misspell it (like .navbar instead of .nav), your
 
 - **For desktop, I add a third column and update the layout to give more space to areas like main and subnav-2. This lets the content breathe more on wider screens.**
 
-#### More on Gris Templates Line: 59
+### More on Gris Templates Line: 59
 ```css
  grid-template-columns: 1fr 2fr 1fr;
 ```
