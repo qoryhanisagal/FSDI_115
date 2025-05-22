@@ -1,0 +1,72 @@
+* {
+  box-sizing: border-box; /* I’m setting this so padding and borders don’t mess up widths */
+}
+
+body {
+  margin: 0;
+  font-family: sans-serif; /* I’m using a clean default font */
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+    /* I'm using flex here for mobile-first layout — everything stacks vertically by default */
+}
+
+.box {
+  height: 80px;
+  background-color: gray;
+    /* This is just the default size and color for each box */
+}
+
+/* I’m giving each section a unique color so I can visually tell them apart */
+.header { background: gold; }
+.nav { background: #666; }
+.subnav-1, .subnav-2 { background: hotpink; }
+.side { background: skyblue; }
+.main { background: black; height: 150px; } /* I made the main section taller base on the challenge design */
+.banner { background: lightgreen; }
+.footer { background: orange; }
+
+/* Tablet layout starts here — this is for screens 641px and wider */
+@media (min-width: 641px) {
+  .container {
+    display: grid; /* I’m switching from flex to grid so I can control layout more precisely */
+    grid-template-columns: 1fr 1fr; /* Two equal columns */
+    grid-template-areas:
+      "header header"        /* Header spans both columns */
+      "nav nav"              /* Nav spans both columns */
+      "subnav-1 subnav-2"    /* Subnavs go side-by-side */
+      "side main"            /* Side and main content side-by-side */
+      "banner banner"        /* Banner spans full width */
+      "footer footer";       /* Footer also spans full width */
+    gap: 1rem; /* Space between all the areas */
+  }
+
+  /* Here I’m assigning each box to the area I named above */
+  .header { grid-area: header; }
+  .nav { grid-area: nav; }
+  .subnav-1 { grid-area: subnav-1; }
+  .subnav-2 { grid-area: subnav-2; }
+  .side { grid-area: side; }
+  .main { grid-area: main; }
+  .banner { grid-area: banner; }
+  .footer { grid-area: footer; }
+}
+
+/* Desktop layout — applies at 1008px and up */
+@media (min-width: 1008px) {
+  .container {
+    /* I’m adding a third column for more complex layout */
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-areas:
+      "header header header"         /* Header spans all three columns */
+      "nav nav nav"                 /* Nav still spans all three */
+      "subnav-1 subnav-2 subnav-2"  /* Subnav-2 gets more space */
+      "side main main"              /* Side stays on left, main takes more room */
+      "banner banner banner"        /* Banner stays full-width */
+      "footer footer footer";       /* Footer too*/
+  }
+}
