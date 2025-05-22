@@ -61,7 +61,7 @@ Let me explain the important bits. So I started mobile-first using Flexbox for v
   padding: 1rem;
 }
 ```
-- **I’m starting with a mobile-first layout, so I’m using Flexbox to stack everything vertically. It’s simple and easy to follow for small screens.**
+I’m starting with a mobile-first layout, so I’m using Flexbox to stack everything vertically. It’s simple and easy to follow for small screens.
 
 - **display:** flex creates a flex container.
 - **flex-direction:** column makes the items stack vertically.
@@ -86,8 +86,9 @@ Let me explain the important bits. So I started mobile-first using Flexbox for v
 .banner { background: lightgreen; }
 .footer { background: orange; }
 ```
-- **Then I give each section a different color so I can see which is which during development.**
-- **I made `.main` taller so it stands out — my thought is was made to represent more content.**
+-Then I give each section a different color so I can see which is which during development.
+
+- I made `.main` taller so it stands out — my thought is was made to represent more content.
 
 ### Tablet Layout `(min-width: 641px)` - Switch to Grid
 ```css
@@ -106,8 +107,9 @@ Let me explain the important bits. So I started mobile-first using Flexbox for v
   }
 ```
 
-- **Once the screen hits 641px, I switch to Grid so I can layout content side-by-side. I define two equal columns with 1fr 1fr. Then I name the layout zones using grid-template-areas so I don’t have to manually place everything by numbers.**
-- **This makes it easy to visualize how the layout is structured.**
+- Once the screen hits 641px, I switch to Grid so I can layout content side-by-side. I define two equal columns with 1fr 1fr. Then I name the layout zones using grid-template-areas so I don’t have to manually place everything by numbers.
+
+- This makes it easy to visualize how the layout is structured.
 
 #### **What does `1fr` mean in a CSS Grid?**
 ```css
@@ -139,7 +141,8 @@ grid-template-columns: 1fr 3fr;
 #### Tips to Remember
 **Think of fr as “share of the space” — not pixels, not percent, but fractions of whatever space is left.**
 
-#### **Line 37: `header header` This line is part of the grid-template-areas in the tablet media query. It tells the browser to place the header element across both columns in this row.**
+#### **Line 37: `header header` 
+This line is part of the grid-template-areas in the tablet media query. It tells the browser to place the header element across both columns in this row.
 
 - **So visually, it's like**
 
@@ -159,9 +162,9 @@ grid-template-columns: 1fr 3fr;
 ```
 |  side  |  main  |
 ```
-- **Each quoted line in grid-template-areas represents one row, and each word represents a grid area (box) placed in that column for that row. Remember by 10x10 analogy**
+- Each quoted line in grid-template-areas represents one row, and each word represents a grid area (box) placed in that column for that row. Remember by 10x10 analogy
 
-- **The structure tells the browser exactly how to place and span elements across rows and columns. Repeating the same name (like header header) means that element should span both columns.**
+- The structure tells the browser exactly how to place and span elements across rows and columns. Repeating the same name (like header header) means that element should span both columns.
 
 **Here I’m assigning each box to the area I named above**
 ```css
@@ -175,7 +178,7 @@ grid-template-columns: 1fr 3fr;
   .footer { grid-area: footer; }
 }
 ```
-- **Each section is then assigned to one of the grid areas using grid-area. This way I can move things around in my layout just by changing the grid template. Therefore, there is no need to adjust each element manually.**
+- Each section is then assigned to one of the grid areas using grid-area. This way I can move things around in my layout just by changing the grid template. Therefore, there is no need to adjust each element manually.
 
 ####  How each box is getting assigned to a specific area using grid-area and grid-template-areas?
 Looking at the full code for Table Layout
