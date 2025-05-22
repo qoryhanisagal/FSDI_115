@@ -2,9 +2,11 @@
   box-sizing: border-box; /* I’m setting this so padding and borders don’t mess up widths */
 }
 
-body {
+html, body {
   margin: 0;
   font-family: sans-serif; /* I’m using a clean default font */
+  height: 100%;
+  margin: 0;
 }
 
 .container {
@@ -12,7 +14,8 @@ body {
   flex-direction: column;
   gap: 1rem;
   padding: 1rem;
-    /* I'm using flex here for mobile-first layout — everything stacks vertically by default */
+  align-items: stretch;
+  min-height: 100vh; /* Force the container to fill the entire screen height */
 }
 
 .box {
@@ -25,13 +28,23 @@ body {
 .header { background: gold; }
 .nav { background: #666; }
 .subnav-1, .subnav-2 { background: hotpink; }
-.side { background: skyblue; }
-.main { background: black; height: 150px; } /* I made the main section taller base on the challenge design */
+.side { background: skyblue; height: 130px; align-self: stretch; }
+.main { background: black; height: 260px; } /* I made the main section taller base on the challenge design */
 .banner { background: lightgreen; }
 .footer { background: orange; }
 
+.header::before {
+  content: "Phone Layout";
+  display: block;
+  color: white;
+  font-weight: bold;
+  padding: 1rem;
+  text-align: center;
+  font-size: 3rem;;
+}
+
 /* Tablet layout starts here — this is for screens 641px and wider */
-@media (min-width: 641px) {
+@media (min-width: 641px) and (max-width: 1007px) {
   .container {
     display: grid; /* I’m switching from flex to grid so I can control layout more precisely */
     grid-template-columns: 1fr 1fr; /* Two equal columns */
@@ -54,19 +67,119 @@ body {
   .main { grid-area: main; }
   .banner { grid-area: banner; }
   .footer { grid-area: footer; }
+  .header::before {content: "Tablet Layout";}
+  .side,
+  .main {
+    height: 150px; /* I’m letting the main and side sections grow else 150 px to fit their content */
+    min-height: 100%;
+    align-self: stretch; /* I’m making sure they stretch to fill the grid area */
+  }
 }
 
 /* Desktop layout — applies at 1008px and up */
 @media (min-width: 1008px) {
   .container {
+    display: grid; /* I’m still using grid for desktop */
     /* I’m adding a third column for more complex layout */
-    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto auto auto 1fr 1fr auto auto;
     grid-template-areas:
-      "header header header"         /* Header spans all three columns */
-      "nav nav nav"                 /* Nav still spans all three */
-      "subnav-1 subnav-2 subnav-2"  /* Subnav-2 gets more space */
-      "side main main"              /* Side stays on left, main takes more room */
-      "banner banner banner"        /* Banner stays full-width */
-      "footer footer footer";       /* Footer too*/
+      "header header header"
+      "nav nav nav"
+      "subnav-1 subnav-1 subnav-2"
+      "side main main"
+      "side main main"
+      "banner banner banner"
+      "footer footer footer";
+    gap: 1rem; /* Space between all the areas */
   }
+  .header {grid-area: header;}
+  .header::before {content: "Desktop Layout";}
+  .side {
+    grid-area: side;
+    grid-row: 4 / span 2;
+    align-self: stretch;
+  }
+  .main {
+    grid-area: main;
+    grid-row: 4 / span 2;
+    align-self: stretch;
+    height: auto; /* I’m letting the main section grow to fit its content */
+    min-height: 100%;
+  }
+  .nav {grid-area: nav;}
+  .subnav-1 {grid-area: subnav-1;}
+  .subnav-2 {grid-area: subnav-2;}
+  .banner {grid-area: banner;}
+  .footer {grid-area: footer;}
+}
+/* Section labels for clarity */
+.nav::before {
+  content: "Nav";
+  display: block;
+  color: white;
+  font-weight: bold;
+  padding: 1rem;
+  text-align: center;
+  font-size: 2rem;
+}
+
+.subnav-1::before {
+  content: "Subnav 1";
+  display: block;
+  color: white;
+  font-weight: bold;
+  padding: 1rem;
+  text-align: center;
+  font-size: 2rem;
+}
+
+.subnav-2::before {
+  content: "Subnav 2";
+  display: block;
+  color: white;
+  font-weight: bold;
+  padding: 1rem;
+  text-align: center;
+  font-size: 2rem;
+}
+
+.side::before {
+  content: "Side";
+  display: block;
+  color: white;
+  font-weight: bold;
+  padding: 1rem;
+  text-align: center;
+  font-size: 2rem;
+}
+
+.main::before {
+  content: "Main";
+  display: block;
+  color: white;
+  font-weight: bold;
+  padding: 1rem;
+  text-align: center;
+  font-size: 2rem;
+}
+
+.banner::before {
+  content: "Banner";
+  display: block;
+  color: white;
+  font-weight: bold;
+  padding: 1rem;
+  text-align: center;
+  font-size: 2rem;
+}
+
+.footer::before {
+  content: "Footer";
+  display: block;
+  color: white;
+  font-weight: bold;
+  padding: 1rem;
+  text-align: center;
+  font-size: 2rem;
 }
